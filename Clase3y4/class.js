@@ -57,7 +57,7 @@ class Contenedor{
 //getAll(): Object[] - Devuelve un array con los objetos presentes en el archivo.
   getAll = async () => {
     try {
-      let info = await fs.promises.readFile( `./resources/${this.ProductName}`,"utf-8");
+      let info = await fs.promises.readFile( `./resources/${this.productName}`,"utf-8");
       return JSON.parse(info);}
 
     catch (err) {
@@ -69,14 +69,14 @@ class Contenedor{
 //deleteById(Number): void - Elimina del archivo el objeto con el id buscado.
   deleteById = async (id) => {
     try {
-      let info = await fs.promises.readFile(`./resources/${this.ProductName}`,"utf-8"
+      let info = await fs.promises.readFile(`./resources/${this.productName}`,"utf-8"
       );
       let content = JSON.parse(info);
 
       // filtrar los productos.
       let contentEdited = content.filter((item) => item.id !== id);
 
-      await fs.promises.writeFile(`./resources/${this.ProductName}`,JSON.stringify(contentEdited));
+      await fs.promises.writeFile(`./resources/${this.productName}`,JSON.stringify(contentEdited));
 
       console.log(`El producto con el id ${id} fue removido.`);} 
 
@@ -89,7 +89,7 @@ class Contenedor{
 //deleteAll(): void - Elimina todos los objetos presentes en el archivo.
   deleteAll = async () => {
     try {
-      await fs.promises.writeFile(`./resources/${this.ProductName}`, "");
+      await fs.promises.writeFile(`./resources/${this.productName}`, "");
       console.log("El archivo esta vacio.");} 
     catch (err) {
         console.log("error",err);
