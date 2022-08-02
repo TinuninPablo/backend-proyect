@@ -1,7 +1,7 @@
+// Traemos lo creado de la carpeta models .
 const Container = require("../models/class");
 const HttpError = require("../models/http-error");
 
-// Traemos lo creado de la carpeta models .
 let container = new Container("products.json");
 
 const getAllProducts = async (req, res, next) => {
@@ -42,7 +42,7 @@ const getProductById = async (req, res, next) => {
 
   if (!product) {
     const error = new HttpError(
-      "No se encontro ningun producto con ese id.",
+      "Producto no encontrado.",
       404
     );
 
@@ -107,7 +107,7 @@ const updateProduct = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(200).json(product);
+  res.status(200).json({message:`el producto ${product} fue actualizado`});
 };
 
 const deleteProduct = async (req, res, next) => {

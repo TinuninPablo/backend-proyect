@@ -3,6 +3,7 @@ const fs = require("fs");
 class Container {
   constructor(fileName) {
     this.fileName = fileName;
+    this.values=[];
   }
 
   save = async (obj) => {
