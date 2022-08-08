@@ -1,17 +1,24 @@
 const fs = require("fs");
 
 class Container {
-  constructor(fileName) {
+  constructor(products, fileName) {
     this.fileName = fileName;
+    this.products = [];
   }
-
   save = async (obj) => {
-    try {
-      let data = await fs.promises.readFile(
-        `./resources/${this.fileName}`,
-        "utf-8"
-      );
 
+    try {
+
+      obj.id = this.getId(); 
+
+      this.products.push(obj);
+
+      return obj.id;
+
+    } catch (err) {
+      console.log(err);
+    }
+  
       if (data.length == 0) {
         obj.id = 1;
 
@@ -42,27 +49,16 @@ class Container {
 
         return obj;
       }
-    } catch (err) {
-       console.log(err);
-    }
   };
 
       //creo la funcion para traer todos los productos
   getAll = async () => {
     try {
-      let data = await fs.promises.readFile(
-        `./resources/${this.fileName}`,
-        "utf-8"
-      );
-
-      return JSON.parse(data);
+      return Promise.resolve(this.products)
     } catch (err) {
        console.log(err);
     }
   };
-
-  
-
   
 }
 
